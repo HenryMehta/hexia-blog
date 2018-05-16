@@ -24,7 +24,7 @@ Quick start
         'blog',
     ]
 
-3. Add "blog.context_processors.hexia_blog" to your context_processors
+3. Add "blog.context_processors.hexia_blog" to your context_processors::
         'OPTIONS': {
             'context_processors': [
                 ...
@@ -40,20 +40,23 @@ Quick start
 5. Run `python manage.py migrate` to create the polls models.
 
 6. Start the development server and visit http://127.0.0.1:8000/admin/
-   to create a Category (you'll need the Admin app enabled).
+   to create a Tag (you'll need the Admin app enabled).
 
-7. There are 3 URLs provide.
+7. There are 3 URLs provided.
+
    <a href="{% url 'blog:blog-detail' object.slug %}">Blog Detail</a> will provide the detail of a specific blog.
    Template: blog/blog_detail.html
 
    <a href="{% url 'blog:blog-list' %}">Blog List</a> will list all blogs.
    Template: blog/blog_list.html
+   
    There is a special case of list where 'tag' and/or 'search_string' get be set.  When set, only blogs matching 
    these criteria will be returned.  See blog/blog_list.html to see it implemented.
 
    <a href="{% url 'blog:blog-create' %}">Blog Create</a> will allow you to create a new blog (or you can via admin)
    Template: blog/blog_form.html
-   When using this you must set the blog auther to the user who it is associated with.
+   
+   When using create you must set the blog auther to the user who it is associated with.
    
 8. Visit http://127.0.0.1:8000/.
 
