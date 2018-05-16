@@ -45,8 +45,9 @@ Quick start
 
 7. There are 3 URLs provided.
 
-   <a href="{% url 'blog:blog-detail' object.slug %}">Blog Detail</a> will provide the detail of a specific blog.
-   Template: blog/blog_detail.html
+        <a href="{% url 'blog:blog-detail' object.slug %}">Blog Detail</a> 
+        
+    provides the detail of a specific blog. Template: blog/blog_detail.html
 
    <a href="{% url 'blog:blog-list' %}">Blog List</a> will list all blogs.
    Template: blog/blog_list.html
