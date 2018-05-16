@@ -1,4 +1,4 @@
 include LICENSE
 include README.rst
-recursive-include optin/static *
-recursive-include optin/templates *
+recursive-include blog/static *
+recursive-include blog/templates *
