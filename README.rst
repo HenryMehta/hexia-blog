@@ -25,6 +25,7 @@ Quick start
     ]
 
 3. Add "blog.context_processors.hexia_blog" to your context_processors::
+
         'OPTIONS': {
             'context_processors': [
                 ...
