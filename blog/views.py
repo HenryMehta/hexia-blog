@@ -1,4 +1,4 @@
-import operator, functools
+import operator, functools, datetime
 
 from django.db.models import Q
 from django.shortcuts import render
@@ -70,4 +70,19 @@ class TagBlogListView(BlogListView):
         qs = super(TagBlogListView, self).get_queryset(*args, **kwargs)
         tag = Tag.objects.get(slug=self.kwargs['slug'])
         qs.filter(tag=tag)
+        return qs
+
+
+class MonthBlogListView(BlogListView):
+    def get_queryset(self, *args, **kwargs):
+        qs = super(MonthBlogListView, self).get_queryset(*args, **kwargs)
+        month = int(self.kwargs['month'])
+        year = int(self.kwargs['year'])
+        start_date = datetime.date(year, month, 1)
+        if month == 12:
+            year += 1
+            month = 1
+        else : month += 1
+        end_date = datetime.date(year, month, 1)
+        qs.filter(date__gte=start_date, date__lt=end_date)
         return qs

@@ -34,6 +34,10 @@ class Tag (models.Model):
             self.slug = slug
         super().save(*args, **kwargs)
 
+    @property
+    def count(self):
+        return Blog.objects.live_blogs().filter(tag=self).count
+        
     @models.permalink
     def get_absolute_url(self):
         return ('blog:blog-tag-list', (), {'slug': self.slug})

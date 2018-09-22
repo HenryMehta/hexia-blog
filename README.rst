@@ -43,7 +43,7 @@ Quick start
 6. Start the development server and visit http://127.0.0.1:8000/admin/
    to create a Tag (you'll need the Admin app enabled).
 
-7. There are 4 URLs provided.
+7. There are 5 URLs provided.
 
     <a href="{% url 'blog:blog-detail' object.slug %}">Blog Detail</a> provides the detail of a specific blog. 
    Template: blog/blog_detail.html
@@ -55,6 +55,8 @@ Quick start
    these criteria will be returned.  See blog/blog_list.html to see it implemented.
 
    <a href="{% url 'blog:blog-tag-list' tag.slug %}">Tag List</a> provides a list of blogs with the associated Tag.
+
+   <a href="{% url 'blog:blog-month-list' month=xx year=yyyy %}">Month List</a> provides a list of blogs within the associated Month.
 
     <a href="{% url 'blog:blog-create' %}">Blog Create</a> will allow you to create a new blog (or you can via admin)
    Template: blog/blog_form.html
