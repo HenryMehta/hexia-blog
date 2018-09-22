@@ -37,7 +37,7 @@ class Tag (models.Model):
     @property
     def count(self):
         return Blog.objects.live_blogs().filter(tag=self).count
-        
+
     @models.permalink
     def get_absolute_url(self):
         return ('blog:blog-tag-list', (), {'slug': self.slug})
@@ -58,7 +58,7 @@ class BlogManager(models.Manager):
         return BlogQuerySet(self.model, using=self._db)  
 
     def live_blogs(self, tag=None):
-        return self.get_queryset().live_listings(tag)
+        return self.get_queryset().live_blogs(tag)
 
     def text_search(self, query=None):
         return self.get_queryset().text_search(query)
