@@ -44,7 +44,7 @@ class Tag (models.Model):
 
 
 class BlogQuerySet(models.QuerySet):
-    def live_blogs(self, yag):
+    def live_blogs(self, tag):
         query = models.Q(live=True)
         if tag != None: query = query & models.Q(tag=tag)
         return self.filter(query)
