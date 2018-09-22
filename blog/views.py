@@ -69,10 +69,8 @@ class TagBlogListView(BlogListView):
     def get_queryset(self, *args, **kwargs):
         qs = super(TagBlogListView, self).get_queryset(*args, **kwargs)
         tag = Tag.objects.get(slug=self.kwargs['slug'])
-        qs.filter(tag=tag)
-        return qs
-
-
+        return qs.filter(tag=tag)
+        
 class MonthBlogListView(BlogListView):
     def get_queryset(self, *args, **kwargs):
         qs = super(MonthBlogListView, self).get_queryset(*args, **kwargs)
@@ -84,5 +82,4 @@ class MonthBlogListView(BlogListView):
             month = 1
         else : month += 1
         end_date = datetime.date(year, month, 1)
-        qs.filter(date__gte=start_date, date__lt=end_date)
-        return qs
+        return qs.filter(date__gte=start_date, date__lt=end_date)
