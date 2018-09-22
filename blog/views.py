@@ -64,3 +64,10 @@ class BlogListView(ListView):
         except: context['selected_tag'] = 0
 
         return context
+
+class TagBlogListView(BlogListView):
+    def get_queryset(self, *args, **kwargs):
+        qs = super(TagBlogListView, self).get_queryset(*args, **kwargs)
+        tag = Tag.objects.get(slug=self.kwargs['slug'])
+        qs.filter(tag=tag)
+        return qs

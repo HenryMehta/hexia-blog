@@ -4,4 +4,7 @@ from blog.models import *
 # Register your models here.
 
 admin.site.register(Blog)
-admin.site.register(Tag)
+
+class TagAdmin(admin.ModelAdmin):
+    readonly = ['slug']
+admin.site.register(Tag, TagAdmin)

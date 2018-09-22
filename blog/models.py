@@ -14,9 +14,29 @@ class Tag (models.Model):
         verbose_name = 'Tag',
         max_length = 30,
     )
+    slug = models.SlugField(
+        verbose_name = 'slug',
+        unique=True,
+        max_length = 255
+    )
     
     def __str__(self):
         return u'%s' % (self.name)    
+    
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            orig = slug = slugify(self.name)
+            if Tag.objects.filter(slug=slug).exists():
+                for x in itertools.count(1):
+                    if not Tag.objects.filter(slug=slug).exists():
+                        break
+                    slug = '%s-%d' % (orig, x)
+            self.slug = slug
+        super().save(*args, **kwargs)
+
+    @models.permalink
+    def get_absolute_url(self):
+        return ('blog:blog-tag-list', (), {'slug': self.slug})
 
 
 class BlogQuerySet(models.QuerySet):
