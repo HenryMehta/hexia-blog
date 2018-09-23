@@ -124,3 +124,17 @@ class Blog (models.Model):
                     self.slug = '%s-%d' % (orig, x)
 
         super(Blog, self).save(*args, **kwargs)
+
+    def next_blog(self):
+        try:
+            blog = Blog.objects.live_blogs().filter(id__gte=self.id).order_by('id')[1]
+        except:
+            blog = Blog.objects.live_blogs().filter(id__lte=self.id).order_by('id')[0]
+        return blog
+    
+    def prev_blog(self):
+        try:
+            blog = Blog.objects.live_blogs().filter(id__lte=self.id).order_by('id')[-1]
+        except:
+            blog = Blog.objects.live_blogs().filter(id__gte=self.id).order_by('id')[-1]
+        return blog

@@ -62,6 +62,10 @@ Quick start
    Template: blog/blog_form.html
    
    When using create you must set the blog auther to the user who it is associated with.
+
+7b. There aprev and next blog functions provided
+
+    For a given `blog` object you can access the previous and next blog with `blog.prev_blog` and `blog.next_blog`
    
 8. Visit http://127.0.0.1:8000/.
 
